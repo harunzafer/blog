@@ -1,24 +1,16 @@
-# create-svelte
+# Static Blog with SvelteKit
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Development
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+Clone the repository and install node modules.
 
 ```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
+git clone git@github.com:hrzafer/blog.git
+cd blog
+npm install
 ```
 
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `npm install`, start a development server:
 
 ```bash
 npm run dev
@@ -35,6 +27,13 @@ To create a production version of your app:
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+This project uses `@sveltejs/adapter-static@next` to generate static html files under `build` folder. You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Deployment
+
+Run the following command to push all static files under `build` to [hrzafer.github.io](https://github.com/hrzafer/hrzafer.github.io) repo's `master` branch which can be accessed by [hrzafer.github.io](https://hrzafer.github.io/).
+
+## Blogging
+
+To add a post add a `my-new-awesome-post.md` file under `src/routes/blog/` which will be accessible at `<URL>/blog/my-new-awesome-post`
