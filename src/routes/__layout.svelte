@@ -4,10 +4,41 @@
 	import '$lib/styles/style.css';
 </script>
 
-<Header />
+<svelte:head>
+	<title>Harun Zafer</title>
+</svelte:head>
 
-<main>
-	<slot />
-</main>
+<div class="wrapper">
+	<Header />
 
-<Footer />
+	<div class="main">
+		<main>
+			<slot />
+		</main>
+
+		<Footer />
+	</div>
+</div>
+
+<style>
+	.wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 60px 20px 30px 20px;
+		max-width: 1200px;
+		margin: 0 auto 0 auto;
+		gap: 30px;
+	}
+
+	.main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	@media (max-width: 1200px) {
+		.wrapper {
+			flex-direction: column;
+		}
+	}
+</style>
