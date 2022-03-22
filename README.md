@@ -34,6 +34,10 @@ This project uses `@sveltejs/adapter-static@next` to generate static html files 
 
 Run the following command to push all static files under `build` to [hrzafer.github.io](https://github.com/hrzafer/hrzafer.github.io) repo's `master` branch which can be accessed by [hrzafer.github.io](https://hrzafer.github.io/).
 
+```bash
+npm run deploy
+```
+
 ## Blogging
 
 To add a post add a `my-new-awesome-post.md` file under `src/routes/blog/` which will be accessible at `<URL>/blog/my-new-awesome-post`
