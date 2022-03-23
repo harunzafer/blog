@@ -1,4 +1,4 @@
-<main>
+<div>
 	<h1>Hi, I'm Harun.</h1>
 
 	<p>I am a software engineer, an open source contributer, and a blog writer.</p>
@@ -25,16 +25,9 @@
 	<p>I am a Turkish Canadian who lives in Toronto</p>
 
 	<p>Malatya, the land of apricots is my hometown.</p>
-</main>
+</div>
 
 <style>
-	main {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		max-width: 960px;
-	}
-
 	h3 {
 		font-size: 2em;
 		margin-top: 20px;
@@ -47,6 +40,13 @@
 	}
 
 	h1 {
+		margin-bottom: 20px;
 		font-size: 3em;
+	}
+
+	@media (max-width: 400px) {
+		h1 {
+			font-size: 2em;
+		}
 	}
 </style>

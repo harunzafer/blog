@@ -5,13 +5,15 @@
 
 <header>
 	<div>
-		<img
-			src="http://harunzafer.com/wp-content/uploads/2019/01/xharun-photo.png.pagespeed.ic.LjeCDNjc0h.webp"
-			class="profile-img"
-			height="64"
-			width="64"
-			alt="Harun Zafer"
-		/>
+		<a href="/"
+			><img
+				src="/images/profile.png"
+				class="profile-img"
+				height="64"
+				width="64"
+				alt="Harun Zafer"
+			/></a
+		>
 	</div>
 	<div class="site-title">Harun Zafer</div>
 	<div class="site-description">Software Engineer, Applied NLP & ML Engineer</div>
@@ -36,9 +38,9 @@
 	</div>
 	<nav class="navbar">
 		<ul>
-			<li><a href="#blog">Blog</a></li>
-			<li><a href="#about">About</a></li>
-			<li><a href="#cat">Categories</a></li>
+			<li><a href="/blog">Blog</a></li>
+			<li><a href="/projects">Projects</a></li>
+			<li><a href="/contact">Contact</a></li>
 		</ul>
 	</nav>
 
