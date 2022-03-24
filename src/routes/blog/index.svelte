@@ -21,18 +21,16 @@
 
 <h1>Posts</h1>
 
-<div class="post-list-container">
-	<ul>
-		{#each posts as post}
-			<div class="post-list">
-				<a class="post-title" href={post.path}>{post.meta.title}</a>
-				<time datetime={post.meta.date} class="post-date">{post.meta.date}</time>
-			</div>
-		{/each}
-	</ul>
+<div class="post-container">
+	{#each posts as post}
+		<div class="post-list">
+			<a class="post-title" href={post.path}>{post.meta.title}</a>
+			<time datetime={post.meta.date} class="post-date">{post.meta.date}</time>
+		</div>
+	{/each}
 </div>
 
-<style>
+<!-- <style>
 	.post-list-container {
 		width: 80%;
 	}
@@ -47,4 +45,4 @@
 		text-decoration: none;
 		color: black;
 	}
-</style>
+</style> -->

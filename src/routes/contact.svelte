@@ -3,6 +3,4 @@
 </svelte:head>
 
 <h1>Contact</h1>
-<p>
-	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the
-</p>
+<p>Please contact me at harunzafer &lt;at&gt; gmail &lt;dot&gt; com</p>
