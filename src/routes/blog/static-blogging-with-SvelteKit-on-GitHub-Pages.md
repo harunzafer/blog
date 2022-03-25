@@ -1,5 +1,5 @@
 ---
-title: My first blog post My first blog post My first blog post
+title: Static Blogging with SvelteKit on GitHub Pages
 date: "2022-12-23"
 categories: 
   - "numbers"
