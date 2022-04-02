@@ -3,9 +3,9 @@
  -->
 <script>
 	import '$lib/styles/prism-one-dark.css';
-	import { page } from '$app/stores';
 	export let title;
 	export let date;
+	export let categories;
 </script>
 
 <svelte:head>
@@ -16,25 +16,56 @@
 <h1>{title}</h1>
 
 <div class="post-header">
-	<div class="post-date">{date}</div>
-	<div class="post-share">
-		Share:&nbsp;
-		<a href="https://www.facebook.com/sharer/sharer.php?u={$page.url}" target="_blank"
-			><img src="/images/icon/facebook.svg" class="social-icon" alt="facebook share button" /></a
-		>
-		<a
-			href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer={$page.url}&amp;text=Mi adipiscing condimentum malesuada congue enim et"
-			target="_blank"
-			><img src="/images/icon/twitter.svg" class="social-icon" alt="twitter share button" /></a
-		>
-		<a href="https://api.whatsapp.com/send?text={$page.url}" target="_blank"
-			><img src="/images/icon/whatsapp.svg" class="social-icon" alt="whatsapp share button" /></a
-		>
+	<div class="post-date">
+		<img src="/images/icon/calendar-solid.svg" class="social-icon" alt="calendar icon" />
+		<time datetime="2019-10-23T00:00:00Z">{date} </time>
+	</div>
+	<div class="post-tags">
+		<img src="/images/icon/hashtag-solid.svg" class="social-icon" alt="calendar icon" />
+		{#each categories as category}
+			<div class="category"><a href="#">{category}</a></div>
+		{/each}
 	</div>
 </div>
 
-<p>Published: {date}</p>
+<!-- <p>Published: {date}</p> -->
 
 <div class="blog-post-content">
 	<slot />
 </div>
+
+<style>
+	h1 {
+		margin-bottom: 15px;
+	}
+	.post-date * {
+		vertical-align: middle;
+	}
+	.post-header .social-icon {
+		height: 16px;
+		margin-right: 5px;
+		vertical-align: middle;
+	}
+	.post-header {
+		vertical-align: middle;
+		margin-bottom: 3em;
+	}
+	.post-date {
+		vertical-align: middle;
+	}
+
+	.category {
+		margin-right: 5px;
+		background: var(--bg-color);
+		padding: 0px 5px;
+		font-weight: bold;
+	}
+	.category:hover {
+		background: var(--bg-hover-color);
+	}
+
+	.post-tags {
+		display: flex;
+		align-items: center;
+	}
+</style>

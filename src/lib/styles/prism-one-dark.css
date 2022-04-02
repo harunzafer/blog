@@ -27,7 +27,7 @@
  * --syntax-gutter-background-color-selected: hsl(220, 13%, 26%);
  * --syntax-cursor-line: hsla(220, 100%, 80%, 0.04);
  */
-
+ code,
  code[class*="language-"],
  pre[class*="language-"] {
      background: hsl(220, 13%, 18%);
@@ -47,6 +47,11 @@
      -moz-hyphens: none;
      -ms-hyphens: none;
      hyphens: none;
+ }
+
+
+ p > code{
+     padding:0px 5px;
  }
  
  /* Selection */
@@ -69,7 +74,7 @@
  /* Code blocks */
  pre[class*="language-"] {
      padding: 1em;
-     margin: 0.5em 0;
+     margin: 1.5em 0;
      overflow: auto;
      border-radius: 0.3em;
  }

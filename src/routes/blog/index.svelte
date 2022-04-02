@@ -23,10 +23,12 @@
 
 <div class="post-container">
 	{#each posts as post}
-		<div class="post-list">
-			<a class="post-title" href={post.path}>{post.meta.title}</a>
-			<time datetime={post.meta.date} class="post-date">{post.meta.date}</time>
-		</div>
+		{#if !post.meta.draft}
+			<div class="post-list">
+				<a class="post-title" href={post.path}>{post.meta.title}</a>
+				<time datetime={post.meta.date} class="post-date">{post.meta.date}</time>
+			</div>
+		{/if}
 	{/each}
 </div>
 

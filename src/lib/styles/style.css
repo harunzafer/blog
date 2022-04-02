@@ -56,6 +56,7 @@ body{
   width: 100%;
   padding: 5px 10px;
   margin-top: 50px;
+  margin-bottom: 30px;
   background: var(--bg-color);
   border:1px dashed var(--border-color);
   font-size: 12px;
@@ -81,22 +82,16 @@ body{
 .post-list .post-title{width: 75%; color: var(--primary-font-color); font-weight: 600;}
 .post-list .post-date{width: 20%; text-align: right; white-space: nowrap;}
 
-.post-header{
-  width: 100%; 
-  display: flex; 
-  flex-direction: row; 
-  flex-wrap: wrap; 
-  justify-content: space-between; 
-  align-items: center;
-  padding: 5px 10px;
+.post-header{  
+  display: inline-flex;  
+  padding: 5px;
   margin-bottom: 5px;
-  background:var(--bg-color);
-  border:1px dashed var(--border-color);
 }
 
-.post-header .post-share{font-weight: 600; color: var(--primary-font-color); display: flex; justify-content: flex-end; align-items: center;}
-.post-header .post-date{font-weight: 600;}
-.post-header .post-share a{display: flex;}
+.post-header .post-date{
+  margin-right: 30px;
+  vertical-align: middle;
+}
 
 .tags-container{
   width: 100%; 
@@ -146,6 +141,37 @@ body{
   width: 100%;
   font-size: 18px;
 }
+
+.blog-post-content > p > a{
+  text-decoration: underline;
+}
+
+.blog-post-content > h2{
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.blog-post-content > ul{
+  list-style: none;
+  line-height: 1.5em;
+  margin-left: 0px;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+
+.blog-post-content > ul li:before{
+  display: inline-block;
+  content: '-';
+  width: 1em;
+  margin-left: -1em;
+}
+
+.blog-post-content > p > img {
+  margin-top: 0.7em;
+  margin-bottom: 1em;
+}
+
 
 .post-tag{background: var(--bg-color); color:var(--primary-font-color); padding: 5px 10px;}
 
@@ -200,6 +226,11 @@ pre{font-size: 14px; max-width: 90vw; overflow: auto;}
   }
   h1{font-size: 1.5rem;}
   .profile-image{width: 96px; height: 96px;}
+
+  .post-header{
+    flex-direction: column;
+    gap: 5px;
+  }
 }
 
 [data-theme="dark"] .social-icon{filter: invert(100%) sepia(50%) saturate(0%) hue-rotate(360deg) brightness(100%) contrast(100%);}
