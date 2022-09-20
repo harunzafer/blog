@@ -10,12 +10,6 @@ export const get = async () => {
 			const { metadata } = await resolver();
 			const postPath = path.slice(2, -3);
 
-			console.log(metadata.draft);
-
-			if (!metadata.draft) {
-				console.log(metadata);
-			}
-
 			return {
 				meta: metadata,
 				path: postPath

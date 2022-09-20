@@ -2,7 +2,7 @@
     We can opt a Markdown file out of any mdsvex layout by adding layout: false to the frontmatter. 
  -->
 <script>
-	import '$lib/styles/prism-one-dark.css';
+	// import '$lib/styles/prism-one-dark.css';
 	export let title;
 	export let date;
 	export let categories;
@@ -23,7 +23,7 @@
 	<div class="post-tags">
 		<img src="/images/icon/hashtag-solid.svg" class="social-icon" alt="calendar icon" />
 		{#each categories as category}
-			<div class="category"><a href="#">{category}</a></div>
+			<div class="category"><a href="/#">{category}</a></div>
 		{/each}
 	</div>
 </div>

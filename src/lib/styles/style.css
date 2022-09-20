@@ -93,21 +93,6 @@ body{
   vertical-align: middle;
 }
 
-.tags-container{
-  width: 100%; 
-  display: flex; 
-  flex-direction: row; 
-  flex-wrap: wrap; 
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.post-tag{margin-bottom: 5px;}
-
-.tags{display: flex; flex-wrap: wrap; justify-content: space-between;}
-.tag{background: var(--bg-color); padding: 5px 10px; margin-right: 10px; margin-bottom: 10px; display: flex; align-items: center;}
-
 .navigation{
   width: 100%; 
   display: flex; 
@@ -142,7 +127,7 @@ body{
   font-size: 18px;
 }
 
-.blog-post-content > p > a{
+.blog-post-content a{
   text-decoration: underline;
 }
 
@@ -151,13 +136,16 @@ body{
   margin-bottom: 0.5em;
 }
 
-.blog-post-content > ul{
-  list-style: none;
+.blog-post-content > ul{  
   line-height: 1.5em;
   margin-left: 0px;
   margin-top: 0.5em;
   margin-bottom: 1em;
   padding-left: 2em;
+}
+
+.blog-post-content > ul{
+  list-style: none;
 }
 
 .blog-post-content > ul li:before{
@@ -172,6 +160,21 @@ body{
   margin-bottom: 1em;
 }
 
+.table-of-contents{
+  border: 1px solid var(--primary-font-color);
+  padding: 0.5em 1em;
+}
+
+.table-of-contents > ol{
+  padding-left: 1em;
+}
+
+blockquote {
+  background: var(--bg-color);
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 1em 10px .1em 10px;  
+}
 
 .post-tag{background: var(--bg-color); color:var(--primary-font-color); padding: 5px 10px;}
 

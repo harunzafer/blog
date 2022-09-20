@@ -15,7 +15,7 @@ const config = {
 		sveltePreprocess(),
 		mdsvex({
 			extensions: ['.md'],
-			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+			// rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
 			layout: {
 				blog: 'src/routes/blog/_post.svelte'
 			}

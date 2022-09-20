@@ -11,25 +11,19 @@ In the previous article we talked about creating a static blog with SvelteKit an
 
 First of all you need a public repository for hosting. You can either have two separate repositories for source code and hosted files or you can have a single repo with two branches.
 
-In my case, I use separate repositories. 
+In my case, I use separate repositories. Here is my packages.json scripts to build and deploy my blog.
 
 ```
 "build": "rm -rf build && svelte-kit build && touch build/.nojekyll && echo harunzafer.com >> build/CNAME",
 "deploy": "npm run build && npx gh-pages -d build -b master -r git@main:hrzafer/hrzafer.github.io.git -t true",`
 ```
 
-of the series, we'll build an absolute minimal markdown blog with SvelteKit.
+- `touch build/.nojekyll` is to tell GitHub, we're not using Jekyll.
+- `echo harunzafer.com >> build/CNAME` is to tell GitHub we're using a custom domain.
+- `npx gh-pages` will be pushing `build` folder to the `master` branch of 
+- `-t true` flag is to tell `gh-pages` to upload files starting with `.` as well.
 
 <br>
-
-[Static Blogging with SvelteKit Part 0: Introduction](/blog/static-blogging-with-sveltekit-part-0-introduction)
-
-[Static Blogging with SvelteKit Part 1: Creating a Minimal Blog](/blog/static-blogging-with-sveltekit-part-1-creating-a-minimal-blog)
-
-Static Blogging with SvelteKit Part 2: Deploying to GitHub Pages (you are here)
-
-[Static Blogging with SvelteKit Part 3: Adding Tags or Categories to Posts](blog/#)
-
 
 ## Coming Soon
 

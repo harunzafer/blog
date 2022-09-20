@@ -3,10 +3,8 @@
 		const currentCategory = params.category;
 		const response = await fetch('/api/posts.json');
 		const posts = await response.json();
-		console.log(currentCategory);
 
 		const matchingPosts = posts.filter((post) => post.meta.categories.includes(currentCategory));
-		console.log(matchingPosts);
 		return {
 			props: {
 				posts: matchingPosts
