@@ -4,7 +4,7 @@
 </script>
 
 <footer class="footer">
-	<p>©2015–2022 Harun Zafer</p>
+	<p>©2015–2023 Harun Zafer</p>
 	<p>
 		Made with <a href="https://kit.svelte.dev/">SvelteKit</a> using
 		<a href="https://jekyll-themes.com/ephesus/">Ephesus</a>
