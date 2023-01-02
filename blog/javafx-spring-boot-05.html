@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Harun Zafer's personal blog" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>My blog - JavaFX with Spring Boot Part-05: FxWeaver Integration</title><meta property="og:title" content="JavaFX with Spring Boot Part-05: FxWeaver Integration" data-svelte="svelte-zpk4mc">
+	<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-69c177ea.css">
+	<link rel="stylesheet" href="/_app/assets/prism-one-dark-3b0919cf.css">
+	<link rel="stylesheet" href="/_app/assets/_post-387faf02.css">
+	<link rel="modulepreload" href="/_app/start-a9e44d0d.js">
+	<link rel="modulepreload" href="/_app/chunks/index-ca5692cf.js">
+	<link rel="modulepreload" href="/_app/pages/__layout.svelte-09c7b8a2.js">
+	<link rel="modulepreload" href="/_app/pages/blog/javafx-spring-boot-05.md-096e2b5c.js">
+	<link rel="modulepreload" href="/_app/chunks/_post-3b80de77.js">
+	</head>
+	<body>
+		<div>
+
+
+
+
+<div class="container"><div class="profile"><a href="/"><img src="/images/profile.png" class="profile-image" height="64" width="64" alt="Harun Zafer"></a>
+	<div class="profile-about"><h2 style="margin-bottom: 0; font-weight: 700;">Harun Zafer</h2>
+		<div class="title svelte-zr3vsr">Software Engineer
+			<br>
+			NLP Enthusiast
+		</div>
+
+		<a href="https://github.com/hrzafer" target="_blank"><img src="/images/icon/github.svg" class="social-icon" alt="github icon"></a>
+		<a href="https://www.linkedin.com/in/hrzafer"><img src="/images/icon/linkedin.svg" class="social-icon" alt="linkedin icon"></a></div>
+</div>
+	<nav class="navbar svelte-21fts9"><div class="toggle svelte-21fts9"><button id="dark-mode-toggle" class="dark-mode-toggle svelte-2dupeq"><svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"></path></svg></button>
+
+</div>
+
+	<ul class="svelte-21fts9"><li class="svelte-21fts9"><a href="/blog" title="Blog" class="svelte-21fts9">Blog</a></li>
+		<li class="svelte-21fts9"><a href="/projects" title="Projects" class="svelte-21fts9">Projects</a></li>
+		<li class="svelte-21fts9"><a href="/contact" title="Contact" class="svelte-21fts9">Contact</a></li></ul>
+</nav>
+
+	<main class="svelte-ql32pr">
+
+
+
+
+<h1 class="svelte-q64m19">JavaFX with Spring Boot Part-05: FxWeaver Integration</h1>
+
+<div class="post-header svelte-q64m19"><div class="post-date svelte-q64m19"><img src="/images/icon/calendar-solid.svg" class="social-icon svelte-q64m19" alt="calendar icon">
+		<time datetime="2019-10-23T00:00:00Z" class="svelte-q64m19">2022-04-23</time></div>
+	<div class="post-tags svelte-q64m19"><img src="/images/icon/hashtag-solid.svg" class="social-icon svelte-q64m19" alt="calendar icon">
+		<div class="category svelte-q64m19"><a href="/#">javafx</a></div><div class="category svelte-q64m19"><a href="/#">spring</a></div></div></div>
+
+
+
+<div class="blog-post-content">
+<div class="table-of-contents"><h3>All articles in this series</h3>
+<ol><li><a href="/blog/javafx-spring-boot-01">JavaFX with Spring Boot Part-01: Introduction</a></li>
+<li><a href="/blog/javafx-spring-boot-02">JavaFX with Spring Boot Part-02: Basic Integration</a></li>
+<li><a href="/blog/javafx-spring-boot-03">JavaFX with Spring Boot Part-03: Advanced Integration</a></li>
+<li><a href="/blog/javafx-spring-boot-04">JavaFX with Spring Boot Part-04: Using FXML</a></li>
+<li>JavaFX with Spring Boot Part-05: FxWeaver Integration</li></ol></div>
+<br>
+<p>In the previous article, we’ve learnt how to let Spring take care of creating controllers for FXML views and everything else on the java side. At this point we already have a full JavaFX and Spring integration. In this article, we’ll lift the integration one level up. In other words, we’ll make use of Spring even more.</p>
+<h3>Why FxWeaver ?</h3>
+<p>You may ask we’ve already well integrated JavaFX with Spring Boot. Then what’s the point of introducing another library in the way? First of all, FxWeaver is very easy to configure and use. It doesn’t introduce much complexity really. But it does make Spring Boot as if it was created specifically for JavaFX application development. Click for more details on why it was created. </p>
+<h3>Setup</h3>
+<p>First, we need to add the Maven dependency to <code>pom.xml</code>.</p>
+<pre class="language-xml"><!-- HTML_TAG_START --><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>net.rgielen<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>javafx-weaver-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.3.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>Now add <code>@FxmlView(&quot;main.fxml&quot;)</code> annotation over the <code>MainController</code>. </p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@FxmlView</span><span class="token punctuation">(</span><span class="token string">"main.fxml"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainController</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>This tells FXWeaver that we have a <code>main.fxml</code> file in the same package but in the resource folder. Now change the <code>StageReadyEventListener</code> as follows:</p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StageReadyEventListener</span> <span class="token keyword">implements</span> <span class="token class-name">ApplicationListener</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">StageReadyEvent</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ApplicationContext</span> applicationContext<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">String</span> applicationTitle<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">StageReadyEventListener</span><span class="token punctuation">(</span><span class="token class-name">ApplicationContext</span> applicationContext<span class="token punctuation">,</span>
+                                   <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&#123;app.title&#125;"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> applicationTitle<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>applicationTitle <span class="token operator">=</span> applicationTitle<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>applicationContext <span class="token operator">=</span> applicationContext<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onApplicationEvent</span><span class="token punctuation">(</span><span class="token class-name">StageReadyEvent</span> event<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Stage</span> stage <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getStage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">FxWeaver</span> fxWeaver <span class="token operator">=</span> applicationContext<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token class-name">FxWeaver</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Parent</span> root <span class="token operator">=</span> fxWeaver<span class="token punctuation">.</span><span class="token function">loadView</span><span class="token punctuation">(</span><span class="token class-name">MainController</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Scene</span> scene <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span>scene<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stage<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>applicationTitle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>Notice the much shorter <code>onApplicationEvent</code> method. Also notice that, we got rid of the <code>Resource xml</code> class variable and <code>@Value(&quot;classpath:/com/hrzafer/javafxspringbootstarter/controller/main.fxml&quot;) Resource fxml</code> variable from the constructor. Now, finding the fxml resource, loading it, and creating its corresponding controller are no more our responsibility. Isn’t that cool?</p>
+<p>Let’s add a menu bar to our little application and create an about window to demonstrate how to create a view from another view easily with <code>FxViewer</code>.</p>
+<p>Change the <code>main.fxml</code> as follows:1</p>
+<pre class="language-xml"><!-- HTML_TAG_START --><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AnchorPane</span> <span class="token attr-name">minHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150.0<span class="token punctuation">"</span></span> <span class="token attr-name">minWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>300.0<span class="token punctuation">"</span></span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/javafx/11.0.2<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/fxml/1<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.hrzafer.javafxspringbootstarter.controller.MainController<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>children</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MenuBar</span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>25.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>320.0<span class="token punctuation">"</span></span> <span class="token attr-name">AnchorPane.leftAnchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.0<span class="token punctuation">"</span></span> <span class="token attr-name">AnchorPane.rightAnchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menus</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Menu</span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>File<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>items</span><span class="token punctuation">></span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MenuItem</span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Close<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>items</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Menu</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Menu</span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Edit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>items</span><span class="token punctuation">></span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MenuItem</span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Delete<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>items</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Menu</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Menu</span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Help<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>items</span><span class="token punctuation">></span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>MenuItem</span> <span class="token attr-name">mnemonicParsing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">onAction</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#aboutMenuItemClicked<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>About<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>items</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Menu</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menus</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>MenuBar</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>14.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>51.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Google:<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>keywordTextField<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>67.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>47.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>25.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>233.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>searchButton<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>67.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>90.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>25.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>233.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Search<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>children</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>padding</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Insets</span> <span class="token attr-name">bottom</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10.0<span class="token punctuation">"</span></span> <span class="token attr-name">top</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>padding</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AnchorPane</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>This should look like this:</p>
+<p><img src="/images/blog/javafx-spring-boot-starter-05-01.png" alt="sample javafx application"></p>
+<p>Notice the <code>onAction=&quot;#aboutMenuItemClicked&quot;</code> part of the about menu item above. We should provide a handler with the same name in the <code>MainController</code>. We will fill up the method later.</p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token annotation punctuation">@FXML</span>
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">aboutMenuItemClicked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>For now the menu items are not responsive. Let’s implement an about view and open it when the <code>Help -&gt; About</code> menu item is clicked.</p>
+<p>Here is a simple about view in FXML:</p>
+<pre class="language-xml"><!-- HTML_TAG_START --><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+
+<span class="token prolog">&lt;?import javafx.geometry.*?></span>
+<span class="token prolog">&lt;?import javafx.scene.control.*?></span>
+<span class="token prolog">&lt;?import javafx.scene.layout.*?></span>
+<span class="token prolog">&lt;?import javafx.scene.text.*?></span>
+
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AnchorPane</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pane<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>300.0<span class="token punctuation">"</span></span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/javafx/11.0.2<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/fxml/1<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.hrzafer.javafxspringbootstarter.controller.AboutController<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>children</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VBox</span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100.0<span class="token punctuation">"</span></span> <span class="token attr-name">spacing</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>20.0<span class="token punctuation">"</span></span> <span class="token attr-name">AnchorPane.bottomAnchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.0<span class="token punctuation">"</span></span> <span class="token attr-name">AnchorPane.leftAnchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.0<span class="token punctuation">"</span></span> <span class="token attr-name">AnchorPane.rightAnchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.0<span class="token punctuation">"</span></span> <span class="token attr-name">AnchorPane.topAnchor</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>children</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">alignment</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>CENTER<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>17.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>309.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>JavaFX and Spring Boot Starter<span class="token punctuation">"</span></span> <span class="token attr-name">textAlignment</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>CENTER<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">></span></span>
+                  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>18.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">></span></span>
+               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VBox.margin</span><span class="token punctuation">></span></span>
+                  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Insets</span> <span class="token attr-name">top</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+               <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>VBox.margin</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">alignment</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>CENTER<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>17.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>333.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Version: 1.0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">alignment</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>CENTER<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>17.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>339.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>©2015–2022 Harun Zafer<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">alignment</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>CENTER<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>17.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>302.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Made with JavaFX and Spring Boot<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>children</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>VBox</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>children</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AnchorPane</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>Which looks like this:</p>
+<p><img src="/images/blog/javafx-spring-boot-starter-05-02.png" alt="sample javafx application"></p>
+<p>Let’s also implement its controller:</p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@FxmlView</span><span class="token punctuation">(</span><span class="token string">"about.fxml"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AboutController</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">Stage</span> stage<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token class-name">AnchorPane</span> pane<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>stage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>pane<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        stage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>Above, controller creates its own stage and an scene. Note that <code>AnchorPage</code> is the root element of the <code>about.fxml</code> and its <code>fx:id</code> attribute is <code>pane</code>. It is time to show this view from the <code>MainController</code>.</p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@FxmlView</span><span class="token punctuation">(</span><span class="token string">"main.fxml"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainController</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">HostServices</span> hostServices<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">FxWeaver</span> fxWeaver<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">public</span> <span class="token class-name">TextField</span> keywordTextField<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">public</span> <span class="token class-name">Button</span> searchButton<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">MainController</span><span class="token punctuation">(</span><span class="token class-name">HostServices</span> hostServices<span class="token punctuation">,</span> <span class="token class-name">FxWeaver</span> fxWeaver<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>hostServices <span class="token operator">=</span> hostServices<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>fxWeaver <span class="token operator">=</span> fxWeaver<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>searchButton<span class="token punctuation">.</span><span class="token function">setOnAction</span><span class="token punctuation">(</span>actionEvent <span class="token operator">-></span> <span class="token keyword">this</span><span class="token punctuation">.</span>hostServices<span class="token punctuation">.</span><span class="token function">showDocument</span><span class="token punctuation">(</span><span class="token string">"https://www.google.ca/search?q="</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>keywordTextField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">aboutMenuItemClicked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        fxWeaver<span class="token punctuation">.</span><span class="token function">loadController</span><span class="token punctuation">(</span><span class="token class-name">AboutController</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>There are two main changes from the previous version here. First, we add <code>FxWeaver</code> as a class member and getting it from the constructor. Remember that <code>FxWeaver</code> object will be created and passed to the constructor by Spring. Second change is the <code>aboutMenuItemClicked</code> method. See how we are creating an instance of <code>AboutController</code> and calling its <code>show</code> method. One important detail is that Spring creates objects in <code>Singleton</code> scope by default. Which means, even if we call the <code>fxWeaver.loadController(AboutController.class).show()</code> from multiple places for many times, there will be only one <code>AboutController</code> instance. A great way of avoiding memory leaks.</p>
+<br>
+Finally, I&#39;ll show you a simple trick to shorten the code above. With the `@RequiredArgsConstructor` annotation of Lombok, we can remove the constructor. This especially nice when there are two or more `final` class variable.
+
+</div></main>
+
+	<footer class="footer svelte-1thw6t4"><p class="svelte-1thw6t4">©2015–2022 Harun Zafer</p>
+	<p class="svelte-1thw6t4">Made with <a href="https://kit.svelte.dev/" class="svelte-1thw6t4">SvelteKit</a> using
+		<a href="https://jekyll-themes.com/ephesus/" class="svelte-1thw6t4">Ephesus</a>
+		theme. Hosted on
+		<a href="https://pages.github.com/" class="svelte-1thw6t4">GitHub Pages</a>.
+	</p>
+</footer>
+</div>
+
+
+		<script type="module" data-hydrate="y0my8j">
+		import { start } from "/_app/start-a9e44d0d.js";
+		start({
+			target: document.querySelector('[data-hydrate="y0my8j"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [
+					import("/_app/pages/__layout.svelte-09c7b8a2.js"),
+						import("/_app/pages/blog/javafx-spring-boot-05.md-096e2b5c.js")
+				],
+				params: {}
+			}
+		});
+	</script></div>
+	</body>
+</html>

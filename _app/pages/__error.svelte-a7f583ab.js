@@ -1,0 +1,1 @@
+import{S as r,i as n,s as c,t as i,h as l,g as u,D as a,d as p}from"../chunks/index-ca5692cf.js";function d(s){let t;return{c(){t=i("No such page")},l(e){t=l(e,"No such page")},m(e,o){u(e,t,o)},p:a,i:a,o:a,d(e){e&&p(t)}}}class h extends r{constructor(t){super(),n(this,t,null,d,c,{})}}export{h as default};

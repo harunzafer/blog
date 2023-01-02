@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Harun Zafer's personal blog" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>My blog - JavaFX with Spring Boot Part-04: Using FXML</title><meta property="og:title" content="JavaFX with Spring Boot Part-04: Using FXML" data-svelte="svelte-zpk4mc">
+	<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-69c177ea.css">
+	<link rel="stylesheet" href="/_app/assets/prism-one-dark-3b0919cf.css">
+	<link rel="stylesheet" href="/_app/assets/_post-387faf02.css">
+	<link rel="modulepreload" href="/_app/start-a9e44d0d.js">
+	<link rel="modulepreload" href="/_app/chunks/index-ca5692cf.js">
+	<link rel="modulepreload" href="/_app/pages/__layout.svelte-09c7b8a2.js">
+	<link rel="modulepreload" href="/_app/pages/blog/javafx-spring-boot-04.md-920ccbdd.js">
+	<link rel="modulepreload" href="/_app/chunks/_post-3b80de77.js">
+	</head>
+	<body>
+		<div>
+
+
+
+
+<div class="container"><div class="profile"><a href="/"><img src="/images/profile.png" class="profile-image" height="64" width="64" alt="Harun Zafer"></a>
+	<div class="profile-about"><h2 style="margin-bottom: 0; font-weight: 700;">Harun Zafer</h2>
+		<div class="title svelte-zr3vsr">Software Engineer
+			<br>
+			NLP Enthusiast
+		</div>
+
+		<a href="https://github.com/hrzafer" target="_blank"><img src="/images/icon/github.svg" class="social-icon" alt="github icon"></a>
+		<a href="https://www.linkedin.com/in/hrzafer"><img src="/images/icon/linkedin.svg" class="social-icon" alt="linkedin icon"></a></div>
+</div>
+	<nav class="navbar svelte-21fts9"><div class="toggle svelte-21fts9"><button id="dark-mode-toggle" class="dark-mode-toggle svelte-2dupeq"><svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"></path></svg></button>
+
+</div>
+
+	<ul class="svelte-21fts9"><li class="svelte-21fts9"><a href="/blog" title="Blog" class="svelte-21fts9">Blog</a></li>
+		<li class="svelte-21fts9"><a href="/projects" title="Projects" class="svelte-21fts9">Projects</a></li>
+		<li class="svelte-21fts9"><a href="/contact" title="Contact" class="svelte-21fts9">Contact</a></li></ul>
+</nav>
+
+	<main class="svelte-ql32pr">
+
+
+
+
+<h1 class="svelte-q64m19">JavaFX with Spring Boot Part-04: Using FXML</h1>
+
+<div class="post-header svelte-q64m19"><div class="post-date svelte-q64m19"><img src="/images/icon/calendar-solid.svg" class="social-icon svelte-q64m19" alt="calendar icon">
+		<time datetime="2019-10-23T00:00:00Z" class="svelte-q64m19">2022-04-19</time></div>
+	<div class="post-tags svelte-q64m19"><img src="/images/icon/hashtag-solid.svg" class="social-icon svelte-q64m19" alt="calendar icon">
+		<div class="category svelte-q64m19"><a href="/#">javafx</a></div><div class="category svelte-q64m19"><a href="/#">spring</a></div></div></div>
+
+
+
+<div class="blog-post-content">
+<div class="table-of-contents"><h3>All articles in this series</h3>
+<ol><li><a href="/blog/javafx-spring-boot-01">JavaFX with Spring Boot Part-01: Introduction</a></li>
+<li><a href="/blog/javafx-spring-boot-02">JavaFX with Spring Boot Part-02: Basic Integration</a></li>
+<li><a href="/blog/javafx-spring-boot-03">JavaFX with Spring Boot Part-03: Advanced Integration</a></li>
+<li>JavaFX with Spring Boot Part-04: Using FXML</li>
+<li><a href="/blog/javafx-spring-boot-05">JavaFX with Spring Boot Part-05: FxWeaver Integration</a></li></ol></div>
+<br>
+<p>In the previous article, we’ve seen how to wire up a JavaFX application with Spring Boot properly. However, the user interface was super simple and was implemented with pure Java code. In an ideal world, we want to separate the user interface from the application logic. With FXML, we define our view as XML, assign a controller Java class for each view, and implement the business model and application on the Java side. Hence we’re using a MVC approach. Another reason is, it is much easier to build a view with the <a href="https://gluonhq.com/products/scene-builder/" rel="nofollow">SceneBuilder</a>. </p>
+<p>Let’s make our application a little bit more functional. We will be building a simple google search window. </p>
+<p><img src="/images/blog/javafx-spring-boot-starter-04-01.png" alt="sample javafx application"></p>
+<p>When user enters a text and clicks the button, the program will open your default browser search for text on google.com.</p>
+<br>
+First, we need to add the Maven dependency for FXML:
+<pre class="language-xml"><!-- HTML_TAG_START --><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.openjfx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>javafx-fxml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>$&#123;javafx.version&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<br>
+<p>Let’s define our simple user interface with FXML:</p>
+<pre class="language-xml"><!-- HTML_TAG_START --><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+
+<span class="token prolog">&lt;?import javafx.geometry.*?></span>
+<span class="token prolog">&lt;?import javafx.scene.control.*?></span>
+<span class="token prolog">&lt;?import javafx.scene.layout.*?></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AnchorPane</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/fxml/1<span class="token punctuation">"</span></span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://javafx.com/javafx/11.0.2<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.hrzafer.javafxspringbootstarter.controller.MainController<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>children</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>31.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>29.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Google:<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>keywordTextField<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>76.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>25.0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>searchButton<span class="token punctuation">"</span></span> <span class="token attr-name">layoutX</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>75.0<span class="token punctuation">"</span></span> <span class="token attr-name">layoutY</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>69.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>25.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>149.0<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Search<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>children</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>padding</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Insets</span> <span class="token attr-name">bottom</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10.0<span class="token punctuation">"</span></span> <span class="token attr-name">left</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10.0<span class="token punctuation">"</span></span> <span class="token attr-name">right</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10.0<span class="token punctuation">"</span></span> <span class="token attr-name">top</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10.0<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>padding</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AnchorPane</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>We can name this <code>main.fxml</code> and save it under <code>src/main/resources/com/hrzafer/javafxspringbootstarter/controller/main.fxml</code>. Let’s also implement a simple controller, <code>MainController</code> for this view. This class will be under <code>com.hrzafer.javafxspringbootstarter.controller</code> package. This way, the view and the controller will be under the same directory in the classpath. </p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainController</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">HostServices</span> hostServices<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">public</span> <span class="token class-name">TextField</span> keywordTextField<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">public</span> <span class="token class-name">Button</span> searchButton<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">MainController</span><span class="token punctuation">(</span><span class="token class-name">HostServices</span> hostServices<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>hostServices <span class="token operator">=</span> hostServices<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>searchButton<span class="token punctuation">.</span><span class="token function">setOnAction</span><span class="token punctuation">(</span>actionEvent <span class="token operator">-></span> <span class="token keyword">this</span><span class="token punctuation">.</span>hostServices<span class="token punctuation">.</span><span class="token function">showDocument</span><span class="token punctuation">(</span><span class="token string">"https://www.google.ca/search?q="</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>keywordTextField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>Notice <code>MainController</code> requires a <code>HostServices</code> object in its constructor. Spring will be responsible for creating an instance and passing it into the constructor. But we need to tell Spring how to crete such a bean. </p>
+<p>Add the following line into the <code>init</code> method of <code>JavaFxApp</code>:</p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java">context<span class="token punctuation">.</span><span class="token function">registerBean</span><span class="token punctuation">(</span><span class="token class-name">HostServices</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token operator">::</span><span class="token function">getHostServices</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><!-- HTML_TAG_END --></pre>
+<p>If you remember from the previous article, <code>StageReadyEventListener</code> was responsible for the UI creation. So weed need to update it as follows:</p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StageReadyEventListener</span> <span class="token keyword">implements</span> <span class="token class-name">ApplicationListener</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">StageReadyEvent</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ApplicationContext</span> applicationContext<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">String</span> applicationTitle<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Resource</span> fxml<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">StageReadyEventListener</span><span class="token punctuation">(</span><span class="token class-name">ApplicationContext</span> applicationContext<span class="token punctuation">,</span>
+                                   <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"$&#123;app.title&#125;"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> applicationTitle<span class="token punctuation">,</span>
+                                   <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"classpath:/com/hrzafer/javafxspringbootstarter/controller/main.fxml"</span><span class="token punctuation">)</span> <span class="token class-name">Resource</span> fxml<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>applicationTitle <span class="token operator">=</span> applicationTitle<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>applicationContext <span class="token operator">=</span> applicationContext<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>fxml <span class="token operator">=</span> fxml<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onApplicationEvent</span><span class="token punctuation">(</span><span class="token class-name">StageReadyEvent</span> event<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">Stage</span> stage <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getStage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">URL</span> url <span class="token operator">=</span> fxml<span class="token punctuation">.</span><span class="token function">getURL</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">FXMLLoader</span> fxmlLoader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FXMLLoader</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            fxmlLoader<span class="token punctuation">.</span><span class="token function">setControllerFactory</span><span class="token punctuation">(</span>applicationContext<span class="token operator">::</span><span class="token function">getBean</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Parent</span> root <span class="token operator">=</span> fxmlLoader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Scene</span> scene <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            stage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span>scene<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            stage<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>applicationTitle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            stage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>Notice that we added a <code>Resource</code> object as class variable. This is a special Spring object to handle resources. We also told Spring where to read this resource with the <code>@Value(classpath:...)</code> annotation. But the most important line is <code>fxmlLoader.setControllerFactory(applicationContext::getBean)</code>. Here we tell the <code>FXMLLoader</code>, let the Spring’s <code>ApplicationContext</code> be responsible for creation of the controller of this view. Without that line, FXMLLoader would try to instantiate the object itself. But it wouldn’t be able to do so, because <code>MainController</code> doesn’t have a constructor that takes no arguments. With the <code>@Component</code> annotation over the <code>MainController</code>, Spring knows that creating an instance is its responsibility. Spring creates an instance regardless of the <code>fxmlLoader.setControllerFactory(applicationContext::getBean)</code> line. Without that line, <code>FXMLLoader</code> tries to create another but fails.</p>
+</div></main>
+
+	<footer class="footer svelte-1thw6t4"><p class="svelte-1thw6t4">©2015–2022 Harun Zafer</p>
+	<p class="svelte-1thw6t4">Made with <a href="https://kit.svelte.dev/" class="svelte-1thw6t4">SvelteKit</a> using
+		<a href="https://jekyll-themes.com/ephesus/" class="svelte-1thw6t4">Ephesus</a>
+		theme. Hosted on
+		<a href="https://pages.github.com/" class="svelte-1thw6t4">GitHub Pages</a>.
+	</p>
+</footer>
+</div>
+
+
+		<script type="module" data-hydrate="2vg9ob">
+		import { start } from "/_app/start-a9e44d0d.js";
+		start({
+			target: document.querySelector('[data-hydrate="2vg9ob"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [
+					import("/_app/pages/__layout.svelte-09c7b8a2.js"),
+						import("/_app/pages/blog/javafx-spring-boot-04.md-920ccbdd.js")
+				],
+				params: {}
+			}
+		});
+	</script></div>
+	</body>
+</html>

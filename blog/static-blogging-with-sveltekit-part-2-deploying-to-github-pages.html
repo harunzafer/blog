@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Harun Zafer's personal blog" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>My blog - Hosting your static blog on GitHub Pages</title><meta property="og:title" content="Hosting your static blog on GitHub Pages" data-svelte="svelte-zpk4mc">
+	<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-69c177ea.css">
+	<link rel="stylesheet" href="/_app/assets/_post-387faf02.css">
+	<link rel="modulepreload" href="/_app/start-a9e44d0d.js">
+	<link rel="modulepreload" href="/_app/chunks/index-ca5692cf.js">
+	<link rel="modulepreload" href="/_app/pages/__layout.svelte-09c7b8a2.js">
+	<link rel="modulepreload" href="/_app/pages/blog/static-blogging-with-sveltekit-part-2-deploying-to-github-pages.md-55d6fec2.js">
+	<link rel="modulepreload" href="/_app/chunks/_post-3b80de77.js">
+	</head>
+	<body>
+		<div>
+
+
+
+
+<div class="container"><div class="profile"><a href="/"><img src="/images/profile.png" class="profile-image" height="64" width="64" alt="Harun Zafer"></a>
+	<div class="profile-about"><h2 style="margin-bottom: 0; font-weight: 700;">Harun Zafer</h2>
+		<div class="title svelte-zr3vsr">Software Engineer
+			<br>
+			NLP Enthusiast
+		</div>
+
+		<a href="https://github.com/hrzafer" target="_blank"><img src="/images/icon/github.svg" class="social-icon" alt="github icon"></a>
+		<a href="https://www.linkedin.com/in/hrzafer"><img src="/images/icon/linkedin.svg" class="social-icon" alt="linkedin icon"></a></div>
+</div>
+	<nav class="navbar svelte-21fts9"><div class="toggle svelte-21fts9"><button id="dark-mode-toggle" class="dark-mode-toggle svelte-2dupeq"><svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"></path></svg></button>
+
+</div>
+
+	<ul class="svelte-21fts9"><li class="svelte-21fts9"><a href="/blog" title="Blog" class="svelte-21fts9">Blog</a></li>
+		<li class="svelte-21fts9"><a href="/projects" title="Projects" class="svelte-21fts9">Projects</a></li>
+		<li class="svelte-21fts9"><a href="/contact" title="Contact" class="svelte-21fts9">Contact</a></li></ul>
+</nav>
+
+	<main class="svelte-ql32pr">
+
+
+
+
+<h1 class="svelte-q64m19">Hosting your static blog on GitHub Pages</h1>
+
+<div class="post-header svelte-q64m19"><div class="post-date svelte-q64m19"><img src="/images/icon/calendar-solid.svg" class="social-icon svelte-q64m19" alt="calendar icon">
+		<time datetime="2019-10-23T00:00:00Z" class="svelte-q64m19">2022-04-01</time></div>
+	<div class="post-tags svelte-q64m19"><img src="/images/icon/hashtag-solid.svg" class="social-icon svelte-q64m19" alt="calendar icon">
+		<div class="category svelte-q64m19"><a href="/#">numbers</a></div><div class="category svelte-q64m19"><a href="/#">odd</a></div></div></div>
+
+
+
+<div class="blog-post-content"><p>In the previous article we talked about creating a static blog with SvelteKit and I pointed out some good articles as starting points. In this article, I want to share my configuration to deploy my blog to GitHub pages.</p>
+<p>First of all you need a public repository for hosting. You can either have two separate repositories for source code and hosted files or you can have a single repo with two branches.</p>
+<p>In my case, I use separate repositories. Here is my packages.json scripts to build and deploy my blog.</p>
+<pre class="language-undefined"><!-- HTML_TAG_START --><code class="language-undefined">&quot;build&quot;: &quot;rm -rf build &amp;&amp; svelte-kit build &amp;&amp; touch build/.nojekyll &amp;&amp; echo harunzafer.com &gt;&gt; build/CNAME&quot;,
+&quot;deploy&quot;: &quot;npm run build &amp;&amp; npx gh-pages -d build -b master -r git@main:hrzafer/hrzafer.github.io.git -t true&quot;,&#96;</code><!-- HTML_TAG_END --></pre>
+<ul><li><code>touch build/.nojekyll</code> is to tell GitHub, we’re not using Jekyll.</li>
+<li><code>echo harunzafer.com &gt;&gt; build/CNAME</code> is to tell GitHub we’re using a custom domain.</li>
+<li><code>npx gh-pages</code> will be pushing <code>build</code> folder to the <code>master</code> branch of </li>
+<li><code>-t true</code> flag is to tell <code>gh-pages</code> to upload files starting with <code>.</code> as well.</li></ul>
+<br>
+<h2>Coming Soon</h2>
+<pre class="language-js"><!-- HTML_TAG_START --><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'article coming soon'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><!-- HTML_TAG_END --></pre>
+</div></main>
+
+	<footer class="footer svelte-1thw6t4"><p class="svelte-1thw6t4">©2015–2022 Harun Zafer</p>
+	<p class="svelte-1thw6t4">Made with <a href="https://kit.svelte.dev/" class="svelte-1thw6t4">SvelteKit</a> using
+		<a href="https://jekyll-themes.com/ephesus/" class="svelte-1thw6t4">Ephesus</a>
+		theme. Hosted on
+		<a href="https://pages.github.com/" class="svelte-1thw6t4">GitHub Pages</a>.
+	</p>
+</footer>
+</div>
+
+
+		<script type="module" data-hydrate="14if9uk">
+		import { start } from "/_app/start-a9e44d0d.js";
+		start({
+			target: document.querySelector('[data-hydrate="14if9uk"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [
+					import("/_app/pages/__layout.svelte-09c7b8a2.js"),
+						import("/_app/pages/blog/static-blogging-with-sveltekit-part-2-deploying-to-github-pages.md-55d6fec2.js")
+				],
+				params: {}
+			}
+		});
+	</script></div>
+	</body>
+</html>

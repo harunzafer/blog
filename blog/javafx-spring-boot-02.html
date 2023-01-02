@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Harun Zafer's personal blog" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content=""><title>My blog - JavaFX with Spring Boot Part-02: Basic Integration</title><meta property="og:title" content="JavaFX with Spring Boot Part-02: Basic Integration" data-svelte="svelte-zpk4mc">
+	<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-69c177ea.css">
+	<link rel="stylesheet" href="/_app/assets/prism-one-dark-3b0919cf.css">
+	<link rel="stylesheet" href="/_app/assets/_post-387faf02.css">
+	<link rel="modulepreload" href="/_app/start-a9e44d0d.js">
+	<link rel="modulepreload" href="/_app/chunks/index-ca5692cf.js">
+	<link rel="modulepreload" href="/_app/pages/__layout.svelte-09c7b8a2.js">
+	<link rel="modulepreload" href="/_app/pages/blog/javafx-spring-boot-02.md-d2d70202.js">
+	<link rel="modulepreload" href="/_app/chunks/_post-3b80de77.js">
+	</head>
+	<body>
+		<div>
+
+
+
+
+<div class="container"><div class="profile"><a href="/"><img src="/images/profile.png" class="profile-image" height="64" width="64" alt="Harun Zafer"></a>
+	<div class="profile-about"><h2 style="margin-bottom: 0; font-weight: 700;">Harun Zafer</h2>
+		<div class="title svelte-zr3vsr">Software Engineer
+			<br>
+			NLP Enthusiast
+		</div>
+
+		<a href="https://github.com/hrzafer" target="_blank"><img src="/images/icon/github.svg" class="social-icon" alt="github icon"></a>
+		<a href="https://www.linkedin.com/in/hrzafer"><img src="/images/icon/linkedin.svg" class="social-icon" alt="linkedin icon"></a></div>
+</div>
+	<nav class="navbar svelte-21fts9"><div class="toggle svelte-21fts9"><button id="dark-mode-toggle" class="dark-mode-toggle svelte-2dupeq"><svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496"><path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"></path></svg></button>
+
+</div>
+
+	<ul class="svelte-21fts9"><li class="svelte-21fts9"><a href="/blog" title="Blog" class="svelte-21fts9">Blog</a></li>
+		<li class="svelte-21fts9"><a href="/projects" title="Projects" class="svelte-21fts9">Projects</a></li>
+		<li class="svelte-21fts9"><a href="/contact" title="Contact" class="svelte-21fts9">Contact</a></li></ul>
+</nav>
+
+	<main class="svelte-ql32pr">
+
+
+
+
+<h1 class="svelte-q64m19">JavaFX with Spring Boot Part-02: Basic Integration</h1>
+
+<div class="post-header svelte-q64m19"><div class="post-date svelte-q64m19"><img src="/images/icon/calendar-solid.svg" class="social-icon svelte-q64m19" alt="calendar icon">
+		<time datetime="2019-10-23T00:00:00Z" class="svelte-q64m19">2022-04-15</time></div>
+	<div class="post-tags svelte-q64m19"><img src="/images/icon/hashtag-solid.svg" class="social-icon svelte-q64m19" alt="calendar icon">
+		<div class="category svelte-q64m19"><a href="/#">javafx</a></div><div class="category svelte-q64m19"><a href="/#">spring</a></div></div></div>
+
+
+
+<div class="blog-post-content">
+<div class="table-of-contents"><h3>All articles in this series</h3>
+<ol><li><a href="/blog/javafx-spring-boot-01">JavaFX with Spring Boot Part-01: Introduction</a></li>
+<li>JavaFX with Spring Boot Part-02: Basic Integration</li>
+<li><a href="/blog/javafx-spring-boot-03">JavaFX with Spring Boot Part-03: Advanced Integration</a></li>
+<li><a href="/blog/javafx-spring-boot-04">JavaFX with Spring Boot Part-04: Using FXML</a></li>
+<li><a href="/blog/javafx-spring-boot-05">JavaFX with Spring Boot Part-05: FxWeaver Integration</a></li></ol></div>
+<br>
+<p>In the article, I will present how to setup a JavaFX project with Spring Boot. This will be a super simple application only to demonstrate the initial setup.</p>
+<h2>Creating an empty Spring Boot project</h2>
+<p>Since we’ll be using Spring Boot, it makes sense to use <a href="https://start.spring.io/" rel="nofollow">spring initialzr</a> and create and empty project. Settings should look like this:</p>
+<p><img src="/images/blog/javafx-spring-boot-starter-02-01.png" alt="spring initialz configuration"></p>
+<p>Note that the only dependency is Lombok which is optional. Now let’s take a look at the project structure.</p>
+<p><img src="/images/blog/javafx-spring-boot-starter-02-02.png" alt="spring boot project structure"></p>
+<p>As you can see nothing is special here. We only have one class as the main entry point of the application and that’s it. Let’s rename auto generated the class name from <code>JavafxSpringBootStarterApplication</code> to <code>SpringBootApp</code>.</p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringBootApp</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">SpringBootApp</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>At this point, we haven’t even added JavaFx as a dependency to our project.</p>
+<h2>Setting up the initial JavaFX Hello World app</h2>
+<p>Let’s start by adding JavaFX as a maven dependency first.</p>
+<pre class="language-xml"><!-- HTML_TAG_START --><code class="language-xml">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>java.version</span><span class="token punctuation">></span></span>17<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>java.version</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>javafx.version</span><span class="token punctuation">></span></span>17.0.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>javafx.version</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">></span></span>
+
+  ...
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.openjfx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>javafx-controls<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>$&#123;javafx.version&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code><!-- HTML_TAG_END --></pre>
+<p>Now we can write our super simple JavaFx hello world application class.</p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JavaFxApp</span> <span class="token keyword">extends</span> <span class="token class-name">Application</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token class-name">Stage</span> primaryStage<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Pane</span> helloPane <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Pane</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Label</span><span class="token punctuation">(</span><span class="token string">"Hello JavaFx"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>helloPane<span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        primaryStage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>And we launch <code>JavaFxApp</code> from <code>SpringBootApp</code> as follows. Note that we replaced <code>SpringApplication.run</code> with JavaFX’s <code>Application</code> class as <code>Application.launch</code>.</p>
+<pre class="language-java"><!-- HTML_TAG_START --><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringBootApp</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Application</span><span class="token punctuation">.</span><span class="token function">launch</span><span class="token punctuation">(</span><span class="token class-name">JavaFxApp</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!-- HTML_TAG_END --></pre>
+<p>In theory, we could merge move <code>@SpringBootApplication</code> and the <code>main</code> method into the <code>JavaFxApp</code> class and could get rid of <code>SpringBootApp</code> entirely. However, this wouldn’t work for <a href="http://mail.openjdk.java.net/pipermail/openjfx-dev/2018-June/021977.html" rel="nofollow">a reason related to Java Modules</a>. In a nutshell, if our application is a non-modular application, we have to separate application classes this way. Otherwise, we see the following error message:</p>
+<pre class="language-text"><!-- HTML_TAG_START --><code class="language-text">Error: JavaFX runtime components are missing, and are required to run this application</code><!-- HTML_TAG_END --></pre>
+<p>Let’s not forget to let Spring know that this is not a web application by adding the following to <code>application.properties</code>.</p>
+<pre class="language-properties"><!-- HTML_TAG_START --><code class="language-properties"><span class="token attr-name">spring.main.web-application-type</span><span class="token punctuation">=</span><span class="token attr-value">none</span></code><!-- HTML_TAG_END --></pre>
+<p>Now if we run our <code>SpringBootApp</code> we should see something like this:</p>
+<p><img src="/images/blog/javafx-spring-boot-starter-02-03.png" alt="spring boot project structure"></p>
+<h2>Conclusion</h2>
+<p>We have hooked up Spring with JavaFx but to able to making the full advantage of Spring, we need a little bit more wiring and I will explain that in the next article.</p>
+<p>Source code for this article can be found <a href="https://github.com/hrzafer/javafx-spring-boot-starter/releases/tag/v0.2" rel="nofollow">here</a>. </p>
+</div></main>
+
+	<footer class="footer svelte-1thw6t4"><p class="svelte-1thw6t4">©2015–2022 Harun Zafer</p>
+	<p class="svelte-1thw6t4">Made with <a href="https://kit.svelte.dev/" class="svelte-1thw6t4">SvelteKit</a> using
+		<a href="https://jekyll-themes.com/ephesus/" class="svelte-1thw6t4">Ephesus</a>
+		theme. Hosted on
+		<a href="https://pages.github.com/" class="svelte-1thw6t4">GitHub Pages</a>.
+	</p>
+</footer>
+</div>
+
+
+		<script type="module" data-hydrate="a6ymdt">
+		import { start } from "/_app/start-a9e44d0d.js";
+		start({
+			target: document.querySelector('[data-hydrate="a6ymdt"]').parentNode,
+			paths: {"base":"","assets":""},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [
+					import("/_app/pages/__layout.svelte-09c7b8a2.js"),
+						import("/_app/pages/blog/javafx-spring-boot-02.md-d2d70202.js")
+				],
+				params: {}
+			}
+		});
+	</script></div>
+	</body>
+</html>
