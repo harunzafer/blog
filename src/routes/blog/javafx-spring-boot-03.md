@@ -143,4 +143,4 @@ We're ready to run our application. You should see something similar.
 
 In the next article, we'll use `FXWeaver`.
 
-Source code for this article can be found [here](https://github.com/hrzafer/javafx-spring-boot-starter/releases/tag/v0.3)
+Source code for this article can be found [here](https://github.com/harunzafer/javafx-spring-boot-starter/releases/tag/v0.3)

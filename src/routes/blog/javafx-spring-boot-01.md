@@ -46,7 +46,7 @@ At this point, I had already implemented 90% of the application and the question
 - exception handling
 - Logging
 
-Finally, I decided to give it a try and by including FxWeaver into the mix, it helped with even more issues. So I decided to share my experience in a series. Another goal is to have a [javafx-spring-boot-starter](https://github.com/hrzafer/javafx-spring-boot-starter) template project at the end of the series.
+Finally, I decided to give it a try and by including FxWeaver into the mix, it helped with even more issues. So I decided to share my experience in a series. Another goal is to have a [javafx-spring-boot-starter](https://github.com/harunzafer/javafx-spring-boot-starter) template project at the end of the series.
 
 <br>
 

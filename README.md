@@ -32,7 +32,7 @@ This project uses `@sveltejs/adapter-static@next` to generate static html files 
 
 ## Deployment
 
-Run the following command to push all static files under `build` to [hrzafer.github.io](https://github.com/hrzafer/hrzafer.github.io) repo's `master` branch which can be accessed by [hrzafer.github.io](https://hrzafer.github.io/).
+Run the following command to push all static files under `build` to `gh-pages` branch. This is where we publish our blog.
 
 ```bash
 npm run deploy

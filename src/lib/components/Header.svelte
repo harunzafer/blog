@@ -1,7 +1,7 @@
 <div class="profile">
 	<a href="/"
 		><img
-			src="/images/profile.png"
+			src="/images/profile-2022-01.jpg"
 			class="profile-image"
 			height="64"
 			width="64"

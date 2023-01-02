@@ -57,7 +57,7 @@ I benefited a lot from [this article](https://joshcollinsworth.com/blog/build-st
 
 ## What is Next
 
-The articles above give you a good starting point but there are still much to do such as styling, pagination, and comments section. I will be sharing more blog post as I implement those features on my blog. You can always [check out the source code for this blog](https://github.com/hrzafer/blog). The hosted files which are generated as static can be found [here](https://github.com/hrzafer/hrzafer.github.io).
+The articles above give you a good starting point but there are still much to do such as styling, pagination, and comments section. I will be sharing more blog post as I implement those features on my blog. You can always [check out the source code for this blog](https://github.com/harunzafer/blog). The hosted files which are generated as static can be found [here](https://github.com/harunzafer/hrzafer.github.io).
 
 
 

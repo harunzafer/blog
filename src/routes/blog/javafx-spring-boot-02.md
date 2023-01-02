@@ -118,4 +118,4 @@ Now if we run our `SpringBootApp` we should see something like this:
 
 We have hooked up Spring with JavaFx but to able to making the full advantage of Spring, we need a little bit more wiring and I will explain that in the next article.
 
-Source code for this article can be found [here](https://github.com/hrzafer/javafx-spring-boot-starter/releases/tag/v0.2). 
+Source code for this article can be found [here](https://github.com/harunzafer/javafx-spring-boot-starter/releases/tag/v0.2). 
