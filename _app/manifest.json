@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-38caa40e.js",
+    "file": "start-67f4c9ef.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -13,6 +13,7 @@
       "src/routes/categories/[category].svelte",
       "src/routes/projects.svelte",
       "src/routes/contact.svelte",
+      "src/routes/blog/__layout.svelte",
       "src/routes/blog/index.svelte",
       "src/routes/blog/static-blogging-with-sveltekit-part-2-deploying-to-github-pages.svelte",
       "src/routes/blog/static-blogging-with-sveltekit.svelte",
@@ -24,7 +25,7 @@
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-aa8cb7c4.js",
+    "file": "pages/__layout.svelte-621d5e36.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -77,6 +78,15 @@
   "src/routes/contact.svelte": {
     "file": "pages/contact.svelte-8827dfbf.js",
     "src": "src/routes/contact.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-755da979.js"
+    ]
+  },
+  "src/routes/blog/__layout.svelte": {
+    "file": "pages/blog/__layout.svelte-8e376878.js",
+    "src": "src/routes/blog/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
