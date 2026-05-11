@@ -8,7 +8,6 @@
 	</div>
 
 	<ul>
-		<li><a href="/blog" title="Blog">Blog</a></li>
 		<li><a href="/projects" title="Projects">Projects</a></li>
 		<li><a href="/contact" title="Contact">Contact</a></li>
 	</ul>
